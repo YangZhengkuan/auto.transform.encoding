@@ -28,14 +28,14 @@
     <project-components>
         <component>
             <implementation-class>
-                plugin.CodePlugin
+                zhengkuan.yzk.handler.FileChangedComponent
             </implementation-class>
         </component>
     </project-components>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="zhengkuan.yzk.auto.transform.encoding" class="zhengkuan.yzk.AutoTransformEncodingAction"
+        <action id="zhengkuan.yzk.auto.transform.encoding" class="zhengkuan.yzk.TransformEncodingAction"
                 text="AutoTransformEncoding" description="Auto Transform File Encoding">
             <add-to-group group-id="EditMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt k"/>

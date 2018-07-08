@@ -124,10 +124,10 @@ public class EncodingProjectManagerImpl extends EncodingProjectManager implement
     private void reloadAlreadyLoadedDocuments() {
         for (VirtualFile file : myMapping.keySet()) {
             Document cachedDocument = FileDocumentManager.getInstance().getCachedDocument(file);
+            // reload document in the right encoding if someone sneaky (you, BreakpointManager)
+            // managed to load the document before project opened
             if (cachedDocument != null) {
-                reload(
-                    file); // reload document in the right encoding if someone sneaky (you, BreakpointManager)
-                // managed to load the document before project opened
+                reload(file);
             }
         }
     }

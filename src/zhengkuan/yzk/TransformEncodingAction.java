@@ -13,10 +13,12 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 
 /**
+ * 文件转码Action
+ *
  * @author zhengkuan.yzk@alibaba-inc.com
  * @date 2018/6/20
  */
-public class AutoTransformEncodingAction extends AnAction {
+public class TransformEncodingAction extends AnAction {
 
     private static final String GB2312 = "GB2312";
     private static final String GBK = "GBK";
@@ -25,7 +27,7 @@ public class AutoTransformEncodingAction extends AnAction {
     /**
      * 当编辑框被打开时显示自定义的Action菜单项，否则，将Action菜单项设置为灰色
      *
-     * @param e
+     * @param e AnActionEvent
      */
     @Override
     public void update(AnActionEvent e) {
@@ -39,7 +41,7 @@ public class AutoTransformEncodingAction extends AnAction {
     }
 
     /**
-     * 自动转码Action动作
+     * 自动转码 Action 动作执行
      *
      * @param e ActionEvent
      */
@@ -47,13 +49,12 @@ public class AutoTransformEncodingAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         transformFileEncoding(virtualFile);
-
     }
 
     /**
      * 修改文件编码
      *
-     * @param virtualFile
+     * @param virtualFile IDEA中为每个文件创建的虚拟文件
      */
     public static void transformFileEncoding(VirtualFile virtualFile) {
         if (virtualFile == null) {
@@ -62,12 +63,7 @@ public class AutoTransformEncodingAction extends AnAction {
 
         try {
             Charset charset = getInputStreamEncode(virtualFile.getInputStream());
-            boolean flag = EncodingUtil.changeTo(virtualFile, charset);
-            if (flag) {
-                System.out.println("Change to " + charset + " Encoding Success!");
-            } else {
-                System.out.println("Change to " + charset + " Encoding Fail!");
-            }
+            EncodingUtil.changeTo(virtualFile, charset);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
