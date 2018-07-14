@@ -2,7 +2,7 @@
     <id>zhengkuan.yzk.auto.transform.encoding</id>
     <name>Auto Transform Encoding</name>
     <version>1.0</version>
-    <vendor email="zhengkuan.yzk@alibaba-inc.com" url="http://www.yourcompany.com">杨征宽（晚滨）</vendor>
+    <vendor email="zhengkuan.yzk@alibaba-inc.com" url="https://www.atatech.org/articles/113286">杨征宽（晚滨）</vendor>
 
     <description><![CDATA[
       文件编码自动转码插件.<br>
