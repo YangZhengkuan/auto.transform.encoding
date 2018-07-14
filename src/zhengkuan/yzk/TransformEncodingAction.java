@@ -11,6 +11,8 @@ import zhengkuan.yzk.encoding.EncodingUtil;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 文件转码Action
@@ -23,6 +25,13 @@ public class TransformEncodingAction extends AnAction {
     private static final String GB2312 = "GB2312";
     private static final String GBK = "GBK";
     private static final String UTF8 = "UTF-8";
+
+    private static final String VOID_CHARSET_NAME = "void";
+
+    /**
+     * 文件编码缓存
+     */
+    private static Map<VirtualFile, Charset> charsetCache = new HashMap<>();
 
     /**
      * 当编辑框被打开时显示自定义的Action菜单项，否则，将Action菜单项设置为灰色
@@ -61,11 +70,22 @@ public class TransformEncodingAction extends AnAction {
             return;
         }
 
-        try {
-            Charset charset = getInputStreamEncode(virtualFile.getInputStream());
-            EncodingUtil.changeTo(virtualFile, charset);
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        /*
+         * 如果文件已经被识别过编码，则无需再次识别
+         */
+        Charset charset = charsetCache.get(virtualFile);
+
+        if (null == charset) {
+            try {
+                charset = getInputStreamEncode(virtualFile.getInputStream());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        boolean success = EncodingUtil.changeTo(virtualFile, charset);
+        if (success) {
+            charsetCache.put(virtualFile, charset);
         }
     }
 
@@ -94,6 +114,10 @@ public class TransformEncodingAction extends AnAction {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+        // 如果获取到的编码名称为void，则取默认UTF-8编码
+        if (VOID_CHARSET_NAME.equals(charsetName)) {
+            charsetName = UTF8;
         }
         return Charset.forName(charsetName);
     }
