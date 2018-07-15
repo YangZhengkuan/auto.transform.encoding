@@ -70,17 +70,23 @@ public class TransformEncodingAction extends AnAction {
             return;
         }
 
-        /*
-         * 如果文件已经被识别过编码，则无需再次识别
-         */
+        // 缓存的文件编码
         Charset charset = charsetCache.get(virtualFile);
+        // 当前的文件编码
+        Charset nowCharset = virtualFile.getCharset();
 
         if (null == charset) {
             try {
                 charset = getInputStreamEncode(virtualFile.getInputStream());
+                if (charset.equals(nowCharset)) {
+                    charsetCache.put(virtualFile, charset);
+                    return;
+                }
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
+        } else if (charset.equals(nowCharset)) {
+            return;
         }
 
         boolean success = EncodingUtil.changeTo(virtualFile, charset);
