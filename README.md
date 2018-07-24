@@ -12,13 +12,17 @@
 
 文件乱码问题非常普遍，而上述解决方案又过于繁琐，还不一定能够一次性选择正确的文件编码，给开发人员带来极大的不便，因此如何自动识别文件编码并进行转码是目前亟待解决的重要问题，能够提高开发人员的开发效率，保证写代码过程的顺畅丝滑**[手动滑稽]**。
 
-![before](./doc/before.gif){:height="70%" width="70%"}
+![before](./doc/before.gif)
+<center>
+    <img src="./doc/before.gif" width="50%" height="50%" />
+    Before
+</center>
 
 ## 2. 解决方案
 
 二话不说，先看最终效果图【打开源码瞬间即可自动转码，解放手指，摆脱疲劳 **^_^**】：
 
-![after](./doc/after.gif){:height="70%" width="70%"}
+![after](./doc/after.gif)
 
 具体解决方案如下：
 
