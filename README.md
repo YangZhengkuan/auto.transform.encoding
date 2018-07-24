@@ -21,8 +21,7 @@
 **The left gif is before using this plugin, the right gif is after using this plugin. The effect is amazing!**
 
 <center>
-    <img src="./doc/before.gif" width="50%" height="50%" float="left" />
-    <img src="./doc/after.gif" width="50%" height="50%" float="left" />
+    <img src="./doc/before.gif" width="50%" height="50%" float="left" /><img src="./doc/after.gif" width="50%" height="50%" float="left" />
 </center>
 
 具体解决方案如下：
