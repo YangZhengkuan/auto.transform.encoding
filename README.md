@@ -10,19 +10,16 @@
 2. 选择正确的文件编码（如果选择的和实际不一致，则需要再次尝试其他编码）
 3. 点击Reload，重新载入文件，然后即可看到源码文件不再出现乱码
 
+<img src="./doc/before.gif" width="70%" height="70%" />
+
 文件乱码问题非常普遍，而上述解决方案又过于繁琐，还不一定能够一次性选择正确的文件编码，给开发人员带来极大的不便，因此如何自动识别文件编码并进行转码是目前亟待解决的重要问题，能够提高开发人员的开发效率，保证写代码过程的顺畅丝滑**[手动滑稽]**。
+
 
 ## 2. 解决方案
 
 二话不说，先看最终效果图【打开源码瞬间即可自动转码，解放手指，摆脱疲劳 **^_^**】：
 
-**左图为使用本插件前，右图为使用本插件后**
-
-**The left gif is before using this plugin, the right gif is after using this plugin. The effect is amazing!**
-
-<center>
-    <img src="./doc/before.gif" width="50%" height="50%" float="left" /><img src="./doc/after.gif" width="50%" height="50%" float="left" />
-</center>
+<img src="./doc/after.gif" width="70%" height="70%" />
 
 具体解决方案如下：
 
