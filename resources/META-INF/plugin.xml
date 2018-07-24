@@ -15,6 +15,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      1.2
+      <ul>
+      <li>Update plugin description.</li>
+      </ul>
       1.1
       <ul>
       <li>Add the file encoding cache. Our plugin won't identify the the encoding of the file repeatedly.</li>
@@ -27,6 +31,10 @@
       <li>Support the keyboard-shortcut: Alt + K.</li>
       </ul>
 
+      1.2
+      <ul>
+      <li>更新插件文档说明</li>
+      </ul>
       1.1
       <ul>
       <li>添加文件编码缓存，不会重新识别已知编码的文件</li>
