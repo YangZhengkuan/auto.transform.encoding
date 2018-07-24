@@ -1,7 +1,7 @@
 <idea-plugin>
-    <id>zhengkuan.zhengkuan.yzk.auto.transform.encoding</id>
+    <id>zhengkuan.yzk.auto.transform.encoding</id>
     <name>Auto Transform Encoding</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor email="1329750315@qq.com" url="https://github.com/YangZhengkuan/auto.transform.encoding">YangZhengkuan 杨征宽（晚滨）</vendor>
 
     <description><![CDATA[
