@@ -1,17 +1,35 @@
 <idea-plugin>
     <id>zhengkuan.yzk.auto.transform.encoding</id>
-    <name>Auto Transform Encoding</name>
+    <name>Auto Transform File Encoding</name>
     <version>1.1</version>
-    <vendor email="zhengkuan.yzk@alibaba-inc.com" url="https://www.atatech.org/articles/113286">杨征宽（晚滨）</vendor>
+    <vendor email="1329750315@qq.com" url="https://github.com/YangZhengkuan/auto.transform.encoding">杨征宽（晚滨）</vendor>
 
     <description><![CDATA[
-      文件编码自动转码插件.<br>
+      Auto Transform File Encoding<br>
+      <br>
+      Identify the encoding of the current file in the editor, and transform the file encoding to the identified encoding automatically.<br>
+      Get rid of the the cumbersome steps you need to click the file encoding menu.
+
+      <hr>
+
+      文件编码自动转码插件<br>
       <br>
       自动识别文件的编码，并进行转码显示<br>
       摆脱需要在右下角编码菜单点击选择的繁琐步骤
     ]]></description>
 
     <change-notes><![CDATA[
+      <ul>
+      1.1
+      <li>Add the file encoding cache. Our plugin won't identify the the encoding of the file repeatedly.</li>
+      <li>Add the transform encoding judgment logic. When the existing encoding is correct, skip the encoding setting step.</li>
+      </ul>
+      1.0
+      <li>Identify the encoding of the current file in the editor, and transform the file encoding to the identified encoding automatically.<li>
+      <li>Support the menu in the group of 'EditMenu', the anchor is the last. The menu name is 'AutoTransformEncoding'.</li>
+      <li>Support the keyboard-shortcut: Alt + K.</li>
+      <hr>
+
       <ul>
       1.1
       <li>添加文件编码缓存，不会重新识别已知编码的文件</li>
