@@ -12,9 +12,13 @@
 
 文件乱码问题非常普遍，而上述解决方案又过于繁琐，还不一定能够一次性选择正确的文件编码，给开发人员带来极大的不便，因此如何自动识别文件编码并进行转码是目前亟待解决的重要问题，能够提高开发人员的开发效率，保证写代码过程的顺畅丝滑**[手动滑稽]**。
 
+![before](./doc/before.gif)
+
 ## 2. 解决方案
 
 二话不说，先看最终效果图【打开源码瞬间即可自动转码，解放手指，摆脱疲劳 **^_^**】：
+
+![after](./doc/after.gif)
 
 具体解决方案如下：
 
@@ -41,3 +45,6 @@
 ## 4. 安装方式
 
 下载附件，或从[项目地址](https://github.com/YangZhengkuan/auto.transform.encoding)中下载auto.transform.encoding.zip，使用本地方式安装本插件，重启IDEA即可使用
+
+> to be continue
+> [idea plugins](https://plugins.jetbrains.com/)
