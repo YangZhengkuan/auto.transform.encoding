@@ -4,13 +4,15 @@
 
 在项目开发的过程中，通常需要查看依赖Jar包中的源码，但是现在的项目的编码通常采用UTF-8编码，而在之前的开发中大部分采用的是GBK编码，这样我们在查看源码时就会出现打开文件乱码的问题，如下图所示：
 
+![problem](./doc/problem.jpg)
+
 这种问题的通常解决方案是：
 
 1. 点击文件编码菜单
-2. 选择正确的文件编码（如果选择的和实际不一致，则需要再次尝试其他编码）
+2. 选择正确的文件编码（如果选择的和 实际不一致，则需要再次尝试其他编码）
 3. 点击Reload，重新载入文件，然后即可看到源码文件不再出现乱码
 
-<img src="./doc/before.gif" width="70%" height="70%" />
+![before](./doc/before.gif)
 
 文件乱码问题非常普遍，而上述解决方案又过于繁琐，还不一定能够一次性选择正确的文件编码，给开发人员带来极大的不便，因此如何自动识别文件编码并进行转码是目前亟待解决的重要问题，能够提高开发人员的开发效率，保证写代码过程的顺畅丝滑**[手动滑稽]**。
 
@@ -19,7 +21,7 @@
 
 二话不说，先看最终效果图【打开源码瞬间即可自动转码，解放手指，摆脱疲劳 **^_^**】：
 
-<img src="./doc/after.gif" width="70%" height="70%" />
+![before](./doc/after.gif)
 
 具体解决方案如下：
 
@@ -45,7 +47,61 @@
 
 ## 4. 安装方式
 
-下载附件，或从[项目地址](https://github.com/YangZhengkuan/auto.transform.encoding)中下载auto.transform.encoding.zip，使用本地方式安装本插件，重启IDEA即可使用
+可以按照下图在IDEA中搜索本插件进行安装：
+![install](./doc/install.gif)
 
-> to be continue
-> [idea plugins](https://plugins.jetbrains.com/)
+您也可以在[JetBrains Plugins Repository](https://plugins.jetbrains.com/)中搜索本插件，进行本地安装。
+
+## 5. 插件说明
+
+**Auto Transform Encoding**
+
+Identify the encoding of the current file in the editor, and transform the file encoding to the identified encoding automatically. Get rid of the the cumbersome steps you need to click the file encoding menu.
+ 
+**文件编码自动转码插件**
+
+自动识别文件的编码，并进行转码显示 摆脱需要在右下角编码菜单点击选择的繁琐步骤 
+
+### Change Notes
+
+- 1.3
+
+    - Upload the project to the github: https://github.com/YangZhengkuan/auto.transform.encoding
+
+- 1.2
+    - Update plugin description.
+
+- 1.1
+
+    - Add the file encoding cache. Our plugin won't identify the the encoding of the file repeatedly.
+    - Add the transform encoding judgment logic. When the existing encoding is correct, skip the encoding setting step.
+
+- 1.0
+
+    - Identify the encoding of the current file in the editor, and transform the file encoding to the identified encoding automatically.
+    - Support the menu in the group of 'EditMenu', the anchor is the last. The menu name is 'AutoTransformEncoding'.
+    - Support the keyboard-shortcut: Alt + K.
+
+- 1.3
+
+    - 上传项目到Github: https://github.com/YangZhengkuan/auto.transform.encoding
+    
+- 1.2
+
+    - 更新插件文档说明
+    
+- 1.1
+
+    - 添加文件编码缓存，不会重新识别已知编码的文件
+    - 增加转码判断逻辑，现有编码即为正确编码时，跳过编码设置步骤
+- 1.0
+
+    - 自动识别并转换文件编码，丝滑般体验
+    - 支持 菜单 Edit → AutoTransformEncoding(最后一项) 调用
+    - 支持 Alt + K 快捷键调用
+
+### Vendor
+
+**YangZhengkuan 杨征宽（晚滨）**
+ 
+**Github:** https://github.com/YangZhengkuan/auto.transform.encoding
