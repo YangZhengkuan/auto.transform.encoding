@@ -94,6 +94,7 @@ Identify the encoding of the current file in the editor, and transform the file 
 
     - 添加文件编码缓存，不会重新识别已知编码的文件
     - 增加转码判断逻辑，现有编码即为正确编码时，跳过编码设置步骤
+    
 - 1.0
 
     - 自动识别并转换文件编码，丝滑般体验
