@@ -63,6 +63,10 @@ Identify the encoding of the current file in the editor, and transform the file 
 自动识别文件的编码，并进行转码显示 摆脱需要在右下角编码菜单点击选择的繁琐步骤 
 
 ### Change Notes
+- 1.4
+    - When user use the keyboard-shortcut(Alt + K) or menu to call this plugin, the action of this plugin is: If current encoding is not UTF-8, then transform to UTF-8; If current encoding is UTF-8, then transform to GBK. And the process of transform encoding automatically remain unchanged, it will also transform the file to the identified encoding automatically.
+    - Change the usage of file encoding cache. About the identified file, if current encoding in the cache is different with right encoding, this plugin won't transform the file to the cached wrong encoding forcibly. Then, when the identified encoding is wrong, user can change encoding manually.
+    - If the encoding identified by the jar of 'cpdetector' belongs to Big5、GB18030、GB2312, the file encoding will be transformed to GBK.
 
 - 1.3
 
@@ -82,6 +86,11 @@ Identify the encoding of the current file in the editor, and transform the file 
     - Support the menu in the group of 'EditMenu', the anchor is the last. The menu name is 'AutoTransformEncoding'.
     - Support the keyboard-shortcut: Alt + K.
 
+- 1.4
+    - 当用户通过快捷键（Alt + K）或菜单方式调用本插件时，本插件执行的动作为：若当前文件为非UTF-8编码，则切换为UTF-8编码；若当前文件编码为UTF-8，则切换为GBK编码。本插件的自动转码逻辑保持不变，会将文件自动转为所识别的编码。
+    - 修正缓存使用方式，已经识别过编码的文件，在缓存中的编码和正确编码不一致时，不会强行将编码转为缓存中的错误编码。这样，当本插件识别的编码不正确时，用户可以手动更改文件的编码，不会被本插件强行转为错误的编码。
+    - 将基于第三方包cpdetector识别的Big5、GB18030、GB2312编码均转为GBK编码。
+      
 - 1.3
 
     - 上传项目到Github: https://github.com/YangZhengkuan/auto.transform.encoding
