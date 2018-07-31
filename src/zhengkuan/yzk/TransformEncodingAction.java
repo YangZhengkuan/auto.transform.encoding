@@ -5,14 +5,19 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.vfs.VirtualFile;
-import info.monitorenter.cpdetector.io.*;
+import info.monitorenter.cpdetector.io.CodepageDetectorProxy;
+import info.monitorenter.cpdetector.io.JChardetFacade;
+import info.monitorenter.cpdetector.io.ParsingDetector;
+import info.monitorenter.cpdetector.io.UnicodeDetector;
 import zhengkuan.yzk.encoding.EncodingUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 文件转码Action
@@ -22,7 +27,12 @@ import java.util.Map;
  */
 public class TransformEncodingAction extends AnAction {
 
-    private static final String GB2312 = "GB2312";
+    private static final Set<String> GBK_SET = new HashSet<String>() {{
+        add("Big5");
+        add("GB18030");
+        add("GB2312");
+    }};
+
     private static final String GBK = "GBK";
     private static final String UTF8 = "UTF-8";
 
@@ -50,14 +60,31 @@ public class TransformEncodingAction extends AnAction {
     }
 
     /**
-     * 自动转码 Action 动作执行
+     * 自动转码 Action 动作执行：GBK与UTF-8编码切换
      *
      * @param e ActionEvent
      */
     @Override
     public void actionPerformed(AnActionEvent e) {
         VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        transformFileEncoding(virtualFile);
+
+        if (null == virtualFile) {
+            return;
+        }
+
+        // 当前的文件编码
+        Charset charset = virtualFile.getCharset();
+
+        // 执行GBK与UTF-8编码的切换动作
+        boolean success;
+        if (UTF8.equals(charset.name())) {
+            success = EncodingUtil.changeTo(virtualFile, Charset.forName(GBK));
+        } else {
+            success = EncodingUtil.changeTo(virtualFile, Charset.forName(UTF8));
+        }
+        if (success) {
+            charsetCache.put(virtualFile, virtualFile.getCharset());
+        }
     }
 
     /**
@@ -70,28 +97,29 @@ public class TransformEncodingAction extends AnAction {
             return;
         }
 
-        // 缓存的文件编码
+        // 缓存的文件编码，如果已经识别过，则直接返回
+        // 因此，若识别编码错误，即可手动更改文件的编码，不会出现始终强制转为错误编码的情况
         Charset charset = charsetCache.get(virtualFile);
-        // 当前的文件编码
-        Charset nowCharset = virtualFile.getCharset();
-
-        if (null == charset) {
-            try {
-                charset = getInputStreamEncode(virtualFile.getInputStream());
-                if (charset.equals(nowCharset)) {
-                    charsetCache.put(virtualFile, charset);
-                    return;
-                }
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        } else if (charset.equals(nowCharset)) {
+        if (null != charset) {
             return;
         }
 
-        boolean success = EncodingUtil.changeTo(virtualFile, charset);
-        if (success) {
-            charsetCache.put(virtualFile, charset);
+        // 当前的文件编码
+        Charset currentCharset = virtualFile.getCharset();
+
+        try {
+            charset = getInputStreamEncode(virtualFile.getInputStream());
+            if (charset.equals(currentCharset)) {
+                charsetCache.put(virtualFile, charset);
+                return;
+            }
+
+            boolean success = EncodingUtil.changeTo(virtualFile, charset);
+            if (success) {
+                charsetCache.put(virtualFile, charset);
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -108,13 +136,12 @@ public class TransformEncodingAction extends AnAction {
             CodepageDetectorProxy detector = CodepageDetectorProxy.getInstance();
             detector.add(new ParsingDetector(false));
             detector.add(JChardetFacade.getInstance());
-            detector.add(ASCIIDetector.getInstance());
             detector.add(UnicodeDetector.getInstance());
             Charset charset = detector.detectCodepage(inputStream, Integer.MAX_VALUE);
             if (charset != null) {
                 charsetName = charset.name();
-                // 将GB2312升级为GBK
-                if (GB2312.equals(charsetName)) {
+                // GBK子集编码
+                if (GBK_SET.contains(charsetName)) {
                     charsetName = GBK;
                 }
             }
