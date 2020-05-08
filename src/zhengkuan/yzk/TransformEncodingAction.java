@@ -11,7 +11,6 @@ import info.monitorenter.cpdetector.io.ParsingDetector;
 import info.monitorenter.cpdetector.io.UnicodeDetector;
 import zhengkuan.yzk.encoding.EncodingUtil;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -50,12 +49,16 @@ public class TransformEncodingAction extends AnAction {
      */
     @Override
     public void update(AnActionEvent e) {
-        Editor editor = e.getData(PlatformDataKeys.EDITOR);
+        try {
+            Editor editor = e.getData(PlatformDataKeys.EDITOR);
 
-        if (editor != null) {
-            e.getPresentation().setEnabled(true);
-        } else {
-            e.getPresentation().setEnabled(false);
+            if (editor != null) {
+                e.getPresentation().setEnabled(true);
+            } else {
+                e.getPresentation().setEnabled(false);
+            }
+        } catch (Exception ignored) {
+
         }
     }
 
@@ -66,24 +69,28 @@ public class TransformEncodingAction extends AnAction {
      */
     @Override
     public void actionPerformed(AnActionEvent e) {
-        VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
+        try {
+            VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
 
-        if (null == virtualFile) {
-            return;
-        }
+            if (null == virtualFile) {
+                return;
+            }
 
-        // 当前的文件编码
-        Charset charset = virtualFile.getCharset();
+            // 当前的文件编码
+            Charset charset = virtualFile.getCharset();
 
-        // 执行GBK与UTF-8编码的切换动作
-        boolean success;
-        if (UTF8.equals(charset.name())) {
-            success = EncodingUtil.changeTo(virtualFile, Charset.forName(GBK));
-        } else {
-            success = EncodingUtil.changeTo(virtualFile, Charset.forName(UTF8));
-        }
-        if (success) {
-            charsetCache.put(virtualFile, virtualFile.getCharset());
+            // 执行GBK与UTF-8编码的切换动作
+            boolean success;
+            if (UTF8.equals(charset.name())) {
+                success = EncodingUtil.changeTo(virtualFile, Charset.forName(GBK));
+            } else {
+                success = EncodingUtil.changeTo(virtualFile, Charset.forName(UTF8));
+            }
+            if (success) {
+                charsetCache.put(virtualFile, virtualFile.getCharset());
+            }
+        } catch (Exception ignored) {
+
         }
     }
 
@@ -93,21 +100,21 @@ public class TransformEncodingAction extends AnAction {
      * @param virtualFile IDEA中为每个文件创建的虚拟文件
      */
     public static void transformFileEncoding(VirtualFile virtualFile) {
-        if (virtualFile == null) {
-            return;
-        }
-
-        // 缓存的文件编码，如果已经识别过，则直接返回
-        // 因此，若识别编码错误，即可手动更改文件的编码，不会出现始终强制转为错误编码的情况
-        Charset charset = charsetCache.get(virtualFile);
-        if (null != charset) {
-            return;
-        }
-
-        // 当前的文件编码
-        Charset currentCharset = virtualFile.getCharset();
-
         try {
+            if (virtualFile == null) {
+                return;
+            }
+
+            // 缓存的文件编码，如果已经识别过，则直接返回
+            // 因此，若识别编码错误，即可手动更改文件的编码，不会出现始终强制转为错误编码的情况
+            Charset charset = charsetCache.get(virtualFile);
+            if (null != charset) {
+                return;
+            }
+
+            // 当前的文件编码
+            Charset currentCharset = virtualFile.getCharset();
+
             charset = getInputStreamEncode(virtualFile.getInputStream());
             if (charset.equals(currentCharset)) {
                 charsetCache.put(virtualFile, charset);
@@ -118,8 +125,8 @@ public class TransformEncodingAction extends AnAction {
             if (success) {
                 charsetCache.put(virtualFile, charset);
             }
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        } catch (Exception ignored) {
+
         }
     }
 
@@ -145,8 +152,8 @@ public class TransformEncodingAction extends AnAction {
                     charsetName = GBK;
                 }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception ignored) {
+
         }
         // 如果获取到的编码名称为void，则取默认UTF-8编码
         if (VOID_CHARSET_NAME.equals(charsetName)) {

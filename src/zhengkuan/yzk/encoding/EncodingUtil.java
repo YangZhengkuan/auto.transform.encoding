@@ -8,7 +8,6 @@ import com.intellij.openapi.vfs.VfsUtilCore;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.encoding.EncodingManager;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
@@ -28,23 +27,24 @@ public class EncodingUtil {
      */
     public static boolean changeTo(final VirtualFile virtualFile, final Charset charset) {
 
-        FileDocumentManager documentManager = FileDocumentManager.getInstance();
-        Document document = documentManager.getDocument(virtualFile);
-
-        final byte[] bytes;
         try {
+            FileDocumentManager documentManager = FileDocumentManager.getInstance();
+            Document document = documentManager.getDocument(virtualFile);
+
+            final byte[] bytes;
+
             bytes = virtualFile.isDirectory() ? null : VfsUtilCore.loadBytes(virtualFile);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-            return false;
-        }
 
-        if (document == null || bytes == null) {
-            return false;
-        }
+            if (document == null || bytes == null) {
+                return false;
+            }
 
-        final Runnable todo = () -> EncodingManager.getInstance().setEncoding(virtualFile, charset);
-        todo.run();
-        return true;
+            final Runnable todo = () -> EncodingManager.getInstance().setEncoding(virtualFile, charset);
+            todo.run();
+            return true;
+        } catch (Exception ignored) {
+
+        }
+        return false;
     }
 }
