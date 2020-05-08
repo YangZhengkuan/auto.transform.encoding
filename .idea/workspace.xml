@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="06806f1c-7a22-47e1-aa92-6c0e8a1166f5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="06806f1c-7a22-47e1-aa92-6c0e8a1166f5" name="Default" comment="fix: 去除异常打印，避免影响体验">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zhengkuan/yzk/TransformEncodingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zhengkuan/yzk/TransformEncodingAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zhengkuan/yzk/encoding/EncodingUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zhengkuan/yzk/encoding/EncodingUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto.transform.encoding.zip" beforeDir="false" afterPath="$PROJECT_DIR$/auto.transform.encoding.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,17 +13,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>CodepageDetectorProxy</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -111,7 +120,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1532575472363</updated>
-      <workItem from="1588910690123" duration="1524000" />
+      <workItem from="1588910690123" duration="2573000" />
+      <workItem from="1588918391435" duration="40000" />
+      <workItem from="1588918467123" duration="113000" />
+      <workItem from="1588918605425" duration="1058000" />
+      <workItem from="1588920604952" duration="1184000" />
     </task>
     <task id="LOCAL-00001" summary="update readme">
       <created>1532576532920</created>
@@ -120,15 +133,36 @@
       <option name="project" value="LOCAL" />
       <updated>1532576532921</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: 去除异常打印，避免影响体验">
+      <created>1588916999538</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588916999538</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
+    <MESSAGE value="fix: 去除异常打印，避免影响体验" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 去除异常打印，避免影响体验" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

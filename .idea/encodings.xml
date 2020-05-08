@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/.gitignore" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/resources/META-INF/plugin.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/zhengkuan/yzk/encoding/EncodingUtil.java" charset="GBK" />
   </component>
 </project>
